@@ -11,10 +11,10 @@ void info ()
 				   "right mouse button, zoom windmill",
 				   "left and right mouse button, move windmill",
 				   "arrow keys, move windmill(without interpolation)",
-				   "a, start/stop animation",
-				   "f, enable/disable fog",
-				   "+, accelerate windmill wings",
+				   "a, start/stop animated wings",
+				   "+, accelerate windmill wings \n!!!ATTENTION: while accelerating the animated wings!!! By exceeding top-speed the windmill will take off!!!",
 				   "-, decelerate windmill wings",
+				   "f, enable/disable fog",
 	               "ESC, Quit", 
 	               "F1, help"};
 

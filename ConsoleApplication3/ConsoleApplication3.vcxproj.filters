@@ -21,16 +21,16 @@
     <ClInclude Include="include\main.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="include\objectLoader.h">
+    <ClInclude Include="include\window.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="include\window.h">
+    <ClInclude Include="include\texture.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="include\animation.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="include\texture.h">
+    <ClInclude Include="include\objectLoader.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
@@ -38,16 +38,16 @@
     <ClCompile Include="source\main.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="source\objectLoader.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="source\window.cpp">
+    <ClCompile Include="source\texture.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="source\animation.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="source\texture.cpp">
+    <ClCompile Include="source\objectLoader.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="source\window.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>

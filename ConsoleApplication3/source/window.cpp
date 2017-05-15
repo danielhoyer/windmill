@@ -126,15 +126,10 @@ void Window::KeyDown (unsigned char key, int x, int y)
 	case 'a':
 		if(scene.size() > 1)
 		{
-			if(animatedWings->getYPos() > 0.0f)
+			if(!animatedWings->isAnimationRunning())	//don't stop animation while running
 			{
-				for (size_t i = 0; i < scene.size(); i++)
-				{
-					scene[i]->Move(0.0f, animatedWings->getYPos());
-				}
-				animatedWings->resetWings();
+				animatedWings->StartStop();
 			}
-			animatedWings->StartStop();
 		}
 		else
 		{
@@ -149,10 +144,16 @@ void Window::KeyDown (unsigned char key, int x, int y)
 		}
 		break;
 	case '+':
-		animatedWings->changeSpeed(0.1f);
+		if (!animatedWings->isAnimationRunning())	//don't change animation speed while animation is running
+		{
+			animatedWings->changeSpeed(0.1f);
+		}
 		break;
 	case '-':
-		animatedWings->changeSpeed(-0.1f);
+		if (!animatedWings->isAnimationRunning())	//don't change animation speed while animation is running
+		{
+			animatedWings->changeSpeed(-0.1f);
+		}
 		break;
   }
   glutPostRedisplay ();
@@ -170,28 +171,40 @@ void Window::KeyDown (int key, int x, int y)
 	  return;
   //Move Windmill with arrow keys:
   case GLUT_KEY_DOWN:
-	    for (size_t i = 0; i < scene.size(); i++)
-		{
-			scene[i]->Move(0.0f, 0.01f);
-		}
+	  if (!animatedWings->isAnimationRunning())	//don't move if animation is running
+	  {
+		  for (size_t i = 0; i < scene.size(); i++)
+		  {
+			  scene[i]->Move(0.0f, 0.01f);
+		  }
+	  }
 	    break;
   case GLUT_KEY_UP:
-	    for (size_t i = 0; i < scene.size(); i++)
-		{
-			scene[i]->Move(0.0f, -0.01f);
-		}
+	  if (!animatedWings->isAnimationRunning())	//don't move if animation is running
+	  {
+		  for (size_t i = 0; i < scene.size(); i++)
+		  {
+			  scene[i]->Move(0.0f, -0.01f);
+		  }
+	  }
 	    break;
   case GLUT_KEY_LEFT:
-	    for (size_t i = 0; i < scene.size(); i++)
-		{
-			scene[i]->Move(-0.01f, 0.0f);
-		}
+	  if (!animatedWings->isAnimationRunning())	//don't move if animation is running
+	  {
+		  for (size_t i = 0; i < scene.size(); i++)
+		  {
+			  scene[i]->Move(-0.01f, 0.0f);
+		  }
+	  }
 	    break;
   case GLUT_KEY_RIGHT:
-	    for (size_t i = 0; i < scene.size(); i++)
-		{
-			scene[i]->Move(0.01f, 0.0f);
-		}
+	  if (!animatedWings->isAnimationRunning())	//don't move if animation is running
+	  {
+		  for (size_t i = 0; i < scene.size(); i++)
+		  {
+			  scene[i]->Move(0.01f, 0.0f);
+		  }
+	  }
 	    break;
   }
 }
@@ -299,6 +312,8 @@ void Window::Mouse(int button, int state, int x, int y)
 */
 void Window::Motion(int x, int y)
 {
+	if (!animatedWings->isAnimationRunning())	//don't move if animation is running
+	{
 	float speedMove = 0.001f;
 	float speedZoom = 0.01f;
 	float speedRotate = 0.5f;
@@ -306,32 +321,33 @@ void Window::Motion(int x, int y)
 	float dy = (float)(y - ymouse);
 
 	// move camera left/right & up/down
-	if (lbutton && rbutton) {
-		for (size_t i = 0; i < scene.size(); i++)
-		{
-			scene[i]->Move(dx * speedMove, dy * speedMove);
+	
+		if (lbutton && rbutton) {
+			for (size_t i = 0; i < scene.size(); i++)
+			{
+				scene[i]->Move(dx * speedMove, dy * speedMove);
+			}
 		}
-	}
-
-	// move camera forward/backward
-	else if (rbutton) {
-		for (size_t i = 0; i < scene.size(); i++)
-		{
-			scene[i]->Zoom(dy * speedZoom);
+		// move camera forward/backward
+		else if (rbutton) {
+			for (size_t i = 0; i < scene.size(); i++)
+			{
+				scene[i]->Zoom(dy * speedZoom);
+			}
 		}
-	}
 
-	// rotate camera
-	else if (lbutton) {
-		for (size_t i = 0; i < scene.size(); i++)
-		{
-			scene[i]->RotateY(speedRotate * dx);
+		// rotate camera
+		else if (lbutton) {
+			for (size_t i = 0; i < scene.size(); i++)
+			{
+				scene[i]->RotateY(speedRotate * dx);
+			}
 		}
-	}
 
-	xmouse = x;
-	ymouse = y;
-	glutPostRedisplay();
+		xmouse = x;
+		ymouse = y;
+		glutPostRedisplay();
+	}
 }
 
 

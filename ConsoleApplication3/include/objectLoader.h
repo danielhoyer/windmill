@@ -36,9 +36,13 @@ public:
 	// rotate VBO around y-axis
 	void RotateY(float dy);
 	
-	//de-/activate fog
+	// de-/activate fog
 	void setFog(bool onOff);
 	bool getFog();
+
+	// position and rotation for animation
+	point3 getPosition();
+	point3 getRotation();
 
 private:
 	// read .obj-File storage:

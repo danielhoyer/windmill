@@ -159,6 +159,16 @@ bool ObjectLoader::getFog()
 	return this->fog;
 }
 
+point3 ObjectLoader::getPosition()
+{
+	return this->pos;
+}
+
+point3 ObjectLoader::getRotation()
+{
+	return this->rotate;
+}
+
 //private Methods:
 /*
 	Optional: 
