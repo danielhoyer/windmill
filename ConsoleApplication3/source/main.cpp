@@ -71,7 +71,7 @@ int main (int argc, char **argv)
   {
     // init glut & create top-level window
     glutInit (&argc, argv);
-    window = new Window ("Windmill - Adam Bickel, Daniel Hoyer, Manuel Horn");
+    window = new Window ("The Flying Windmill - Adam Bickel, Daniel Hoyer, Manuel Horn");
 
     // register event-handler
     glutDisplayFunc  (display);
