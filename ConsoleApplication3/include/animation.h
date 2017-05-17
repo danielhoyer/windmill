@@ -13,14 +13,10 @@ class Animation
     bool run;
 	// actual animation speed
 	float speed;
-	//// store y-movement while flying
-	//float yPos;
 
-	//float xPos, zPos;
+	// store animation-state while windmill is flying;
 	bool animationRunning;
 	int animationStep, routeItem;
-
-
 
   public:
     Animation (ObjectLoader *object);
@@ -34,8 +30,4 @@ class Animation
 	void changeSpeed(float accelerateValue);
 	// check if flying windmill animation is actually running
 	bool isAnimationRunning();
-	//// returns flight height
-	//float getYPos();
-	//// set yPos = 0
-	//void resetWings();
 };

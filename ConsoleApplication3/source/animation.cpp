@@ -36,6 +36,11 @@ Animation::~Animation()
 	one animation step --> rotate windmill-windgs around x-axis
 	==> wings can only rotate into one directory (from where wind
 	comes an turns them) --> uses objectsLoader's RotateX-method
+
+	- if the windmill's speed will exceed top-speed (-2.0), the 
+	  windmill will take of and fly the given route (vector<point3> route)
+	- in the last step of the route the rotation of the windmill wings will 
+	  be decelerated that the windmill is able to land
 */
 void Animation::Step(vector<ObjectLoader*> scene)
 {
@@ -53,12 +58,6 @@ void Animation::Step(vector<ObjectLoader*> scene)
 				speed = -2.0f;
 			}
 			animationStep--;
-			/*yPos += 0.01f;
-			for (size_t i = 0; i < scene.size(); i++)
-			{
-				scene[i]->Move(0.0f, -0.01f);
-				speed = -2.0f;
-			}*/
 		}else if (animationStep > 0)
 		{
 			if (animationStep % 1000 == 0)		// next route entry
@@ -83,15 +82,6 @@ void Animation::Step(vector<ObjectLoader*> scene)
 				run = !run;
 			}
 		}
-		/*if(speed > -2.0f && yPos > 0.0f)  //landing
-		{
-			yPos -= 0.01f;
-			for (size_t i = 0; i < scene.size(); i++)
-			{
-				scene[i]->Move(0.0f, +0.01f);
-				speed = -2.0f;
-			}
-		}*/
 		this->object->RotateX(speed);	// rotate wings
 	}
 }
@@ -111,18 +101,10 @@ void Animation::changeSpeed(float accelerateValue)
 	speed -= accelerateValue;
 }
 
+/*
+	Check if windmill is flying, to prevent keyboard inputs
+*/
 bool Animation::isAnimationRunning()
 {
 	return this->animationRunning;
 }
-
-//float Animation::getYPos()
-//{
-//	return this->yPos;
-//}
-//
-//void Animation::resetWings()
-//{
-//	this->yPos = 0.0f;
-//	this->speed = -0.1f;
-//}
